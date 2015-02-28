@@ -9,22 +9,3 @@ angular.module('ngdemo', ['ngdemo.filters', 'ngdemo.services', 'ngdemo.directive
         $routeProvider.when('/user-creation', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
         $routeProvider.otherwise({redirectTo: '/dummy'});
     }]);
-
-
-angular.module('ngdemo', ['ngFacebook'])
-.config(['$facebookProvider', function($facebookProvider) {
-         $facebookProvider.setAppId('1592690444299818').setPermissions(['email','user_friends']);
-         }])
-.run(['$rootScope', '$window', function($rootScope, $window) {
-      (function(d, s, id) {
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) return;
-       js = d.createElement(s); js.id = id;
-       js.src = "http://connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-      $rootScope.$on('fb.load', function() {
-                     $window.dispatchEvent(new Event('fb.load'));
-                     });
-      }])
-;
