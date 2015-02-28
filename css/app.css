@@ -28,3 +28,26 @@
   content: "";
   padding: 0;
 }
+
+.login-logo, .fb-login-btn{
+    width: 30%;
+    position: relative;
+    margin:auto;
+    margin-top: 20px;
+    max-width: 300px;
+}
+
+.bg-color{
+    background-color:green;
+}
+
+@media only screen and (max-width: 767px){
+    
+.login-logo, .fb-login-btn{
+     width: 80%;
+     position: relative;
+     margin-top: 20px;
+}
+
+
+}
