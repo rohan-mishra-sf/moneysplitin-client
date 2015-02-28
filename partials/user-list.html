@@ -10,8 +10,8 @@
         </thead>
         <tbody>
         <tr ng-repeat="user in users">
-            <td>{{ user.User.name }}</td>
-            <td>{{ user.User.email }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
             <td><a ng-click="editUser(user.id)" class="btn btn-small btn-primary">edit</a></td>
             <td><a ng-click="deleteUser(user.id)" class="btn btn-small btn-danger">delete</a></td>
         </tr>
