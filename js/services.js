@@ -15,7 +15,7 @@
 
  */
 var services = angular.module('ngdemo.services', ['ngResource']);
-
+var apiHost = "http://52.11.53.212/moneysplitin"
 services.factory('DummyFactory', function ($resource) {
     return $resource('/ngdemo/web/dummy', {}, {
         query: { method: 'GET', params: {}, isArray: false }
@@ -23,7 +23,8 @@ services.factory('DummyFactory', function ($resource) {
 });
 
 services.factory('UsersFactory', function ($resource) {
-    return $resource('/moneysplitin/users', {}, {
+    $http.defaults.useXDomain = true;
+    return $resource(apiHost+'/users', {}, {
         query: { method: 'GET', isArray: true },
         create: { method: 'POST' }
     })
