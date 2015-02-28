@@ -23,7 +23,6 @@ services.factory('DummyFactory', function ($resource) {
 });
 
 services.factory('UsersFactory', function ($resource) {
-    $http.defaults.useXDomain = true;
     return $resource(apiHost+'/users', {}, {
         query: { method: 'GET', isArray: true },
         create: { method: 'POST' }
