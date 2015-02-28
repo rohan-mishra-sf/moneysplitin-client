@@ -7,7 +7,79 @@
     <link rel="stylesheet" href="css/app.css"/>
     <link rel="stylesheet" href="css/bootstrap/bootstrap-responsive.min.css"/>
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
+    <script src="js/Chart.js"></script>
+    <script src="/moneysplitin-client/js/jquery/jquery-2.0.3.min.js" ></script>
+    <script src="/moneysplitin-client/js/jquery/jquery.cookie.js" ></script>
+	<script src="/moneysplitin-client/js/facebook/sdk.js" ></script>
 </head>
-<body>
+<body class="bg-color">
+    <script>
+        var iOwe = 300;
+        var iReceive = 50;
+        var pieData = [
+                       {
+                       value: iOwe,
+                       color:"#F7464A",
+                       highlight: "#FF5A5E",
+                       label: "Red"
+                       },
+                       {
+                       value: iReceive,
+                       color: "#46BFBD",
+                       highlight: "#5AD3D1",
+                       label: "Green"
+                       }
+                       ];
+                       window.onload = function(){
+                           var ctx = document.getElementById("chart-area").getContext("2d");
+                           window.myPie = new Chart(ctx).Pie(pieData);
+                       };
+    </script>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="text-center">
+                <h2>Active Events</h2>
+                <div id="canvas-holder">
+                    <canvas id="chart-area" class="chart" width="300" height="300"/>
+                </div>
+                <div class="iOwe"><p>You owe:&nbsp;<span id="iOwe">0</span></p></div>
+                <div class="iReceive"><p>Owed to you:&nbsp;<span id="iReceive">0</span></p></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center">
+                <div class="table-responsive events-table">
+                    <table class="table table-condensed table-striped">
+                        <tr>
+                            <td>Goa Trip</td>
+                            <td>Add Expense</td>
+                        </tr>
+                        <tr>
+                            <td>Apartment Expenses</td>
+                            <td>Add Expense</td>
+                        </tr>
+                        <tr>
+                            <td>Colleagues</td>
+                            <td>Add Expense</td>
+                        </tr>
+                        <tr>
+                            <td>Goa Trip</td>
+                            <td>Add Expense</td>
+                        </tr>
+                        <tr>
+                            <td>Apartment Expenses</td>
+                            <td>Add Expense</td>
+                        </tr>
+                       
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="hover-button" id="addNewEvent">
+            <a href="#"><img src="img/add_icon_event.png" /></a>
+        </div>
+    </div>
+
 </body>
 </html>
+
