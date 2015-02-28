@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en" ng-app="ngdemo">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My AngularJS App</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/app.css"/>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/multiple-select.css" />
+    <!--<script src="js/Chart.js"></script>-->
+</head>
+<body class="bg-color">
+
+<script>
+        var iOwe = 300;
+        var iReceive = 50;
+        var pieData = [
+                       {
+                       value: iOwe,
+                       color:"#F7464A",
+                       highlight: "#FF5A5E",
+                       label: "Red"
+                       },
+                       {
+                       value: iReceive,
+                       color: "#46BFBD",
+                       highlight: "#5AD3D1",
+                       label: "Green"
+                       }
+                       ];
+                       window.onload = function(){
+                           var ctx = document.getElementById("chart-area").getContext("2d");
+                           window.myPie = new Chart(ctx).Pie(pieData);
+                       };
+    </script>
+
+    <div class="container-fluid">
+
+
+        <div class="head clearfix row">
+        <div class="col-sm-1">
+            <a href="#" class="menu-desk"></a>
+        </div>
+        <div class="col-sm-9 text-center">DINNER</div>
+        <div class="col-sm-2">
+            <div class="pull-right">
+            <a href="#" class="wallet"></a>
+            <a href="#" class="account"></a>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="center-block row">
+        <div role="tabpanel">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active col-sm-6 expense-tab"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">EXPENSE</a></li>
+                <li role="presentation" class="col-sm-6 friends-tab"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">FRIENDS</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <div class="expense">
+                        <h1>EXPENSE</h1>
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+
+                                <td>SHOPPING</td>
+                                <td>(Rs. 2000)</td>
+                            </tr>
+                            <tr>
+
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+
+                                <td>TRIP</td>
+                                <td>(Rs. 5000)</td>
+                            </tr>
+                            <tr>
+
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+
+                                <td>OTHERS</td>
+                                <td>(Rs. 3000)</td>
+                            </tr>
+
+                        </table>
+
+                        <div class="plus">
+                            ADD EXPENSES
+                        <a href="#"  data-toggle="modal" data-target="#myModal">+</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <div class="expense friends">
+                        <h1>FRIENDS</h1>
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td><img src="img/sarmishta.jpg"></td>
+                                <td>SHARMISHTHA SINHA</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td><img src="img/sarmishta.jpg"></td>
+                                <td>SHARMISHTHA SINHA</td>
+
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td><img src="img/sarmishta.jpg"></td>
+                                <td>SHARMISHTHA SINHA</td>
+
+                            </tr>
+
+                        </table>
+                        <div class="plus">
+                            ADD FRIENDS
+                            <a href="#"  data-toggle="modal" data-target="#myModal2">+</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                <input type="text" value="" placeholder="Create New Event">
+                </div>
+            </div>
+            <div class="modal-footer odal-buttons">
+                <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                    <h2>ADD EXPENSES</h2>
+                    <input type="text" value="" placeholder="Add Event">
+                    <input type="text" value="" placeholder="Add Price">
+                </div>
+            </div>
+            <div class="modal-footer odal-buttons">
+                <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                    <h2>ADD FRIENDS</h2>
+                    <div class="expense">
+
+                        <div class="form-group" style="height: 300px; overflow: scroll;">
+
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td><img src="img/sarmishta.jpg"></td>
+                                    <td>SHARMISHTHA SINHA</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td><img src="img/sarmishta.jpg"></td>
+                                    <td>SHARMISHTHA SINHA</td>
+
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td><img src="img/sarmishta.jpg"></td>
+                                    <td>SHARMISHTHA SINHA</td>
+
+                                </tr>
+
+                            </table>
+
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+
+            <div class="modal-footer odal-buttons">
+                <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="js/jquery.multiple.select.js"></script>
+<script>
+    $(function() {
+        $('#ms').change(function() {
+            console.log($(this).val());
+        }).multipleSelect({
+            width: '100%'
+        });
+    });
+</script>
+
+<script>
+    $(function(){
+
+        $('#myTab a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+    });
+</script>
+
+</body>
+</html>
+

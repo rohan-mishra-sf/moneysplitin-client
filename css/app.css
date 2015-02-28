@@ -65,6 +65,152 @@
     width:80px;
 }
 
+.menu-desk, .wallet, .account{
+    background: url("../img/sprite.jpg") no-repeat;
+    display: inline-block;
+}
+
+.menu-desk{
+    background-position: 0 0;
+    width: 47px;
+    height: 32px;
+}
+.wallet{
+    background-position: 0 -64px;
+    width: 47px;
+    height: 33px;
+}
+.account{
+    background-position: 0 -31px;
+    width: 47px;
+    height: 33px;
+}
+.head{
+    background: #00bcd5;
+    padding: 10px;
+    color: #fff;
+    font-size: 25px;
+}
+
+.expense{
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding: 20px;
+    background: #fff;
+    width: 95%;
+    margin: auto;
+    /* border-radius: 0; */
+    margin-top: 20px;
+}
+
+.expense h1{
+    color: #ff5353;
+    font-size: 30px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.expense table{
+   border: 1px solid #e0e0e0;
+    width: 100%;
+    background: #fff;
+}
+
+.expense table td{
+    padding:5px;
+    border-top: 1px solid #d5d8dd;
+    border-bottom: 1px solid #d5d8dd;
+    font-size: 20px;
+}
+
+.expense table td img{
+    padding: 5px;
+}
+.expense .plus{
+    bottom: 20px;
+    right: 20px;
+    position: absolute;
+    color: #333;
+    font-size: 18px;
+}
+.expense .plus a, .friends .plus a{
+    background: #00bcd5;
+    color: #015f6b;
+    padding: 10px;
+    font-size: 40px;
+    border-radius: 70px;
+    width: 70px;
+    height: 70px;
+    line-height: 52px;
+    text-align: center;
+    display: inline-block;
+}
+
+.modal input{
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.expense .plus a:hover, .friends .plus a:hover, .expense .plus a:focus, .friends .plus a:focus{
+    text-decoration: none;
+}
+
+.friends .plus a{
+    background: #ff5353;
+    color: #7e2827;
+}
+
+.nav-tabs{
+    background: #fff;
+}
+.nav-tabs > li{
+    padding: 0;
+}
+.expense-tab, .friends-tab{
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+}
+
+.expense-tab a{
+    color: #000;
+    border: 0;
+    background: #fff;
+}
+
+.expense{
+    color: #fd5353;
+}
+
+
+.expense-tab.active{
+    border-bottom: 4px solid #ff5353;
+}
+.friends-tab.active{
+    border-bottom: 4px solid #00bcd5;
+}
+.friends-tab a{
+    border: 0;
+}
+.friends-tab a:hover{
+    border:0;
+    background: #fff;
+    border: 1px solid #fff;
+}
+
+.expense.friends{
+    color: #00bcd2;
+}
+.expense.friends h1{
+    color: #00bcd2;
+}
+
+
+
 @media only screen and (max-width: 767px){
     
 .login-logo, .fb-login-btn{
