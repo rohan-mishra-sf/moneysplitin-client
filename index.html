@@ -58,7 +58,9 @@
 					//window.myPie.segments[1].value = obj.paid;
 					//window.myPie.update();
 				//	console.log(obj);
-									
+                    if(!obj.share || !obj.paid) {
+                    $('#first_login').html('<h2>Ah! So you are still to add some Expenses </h2><p>When you do, we can show you a quick summary chart here. Get started by adding expenses to your events now!</p>');
+                    }
 				}
 			});
 			
