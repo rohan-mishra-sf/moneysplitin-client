@@ -10,13 +10,37 @@
     <script src="js/Chart.js"></script>
     <script src="/moneysplitin-client/js/jquery/jquery-2.0.3.min.js" ></script>
     <script src="/moneysplitin-client/js/jquery/jquery.cookie.js" ></script>
+    <script src="/moneysplitin-client/js/custom.js" ></script>
 	<script src="/moneysplitin-client/js/facebook/sdk.js" ></script>
 </head>
 <body class="bg-color">
     <script>
-	var cookieValue = $.cookie("fblogin");
-	if(typeof cookieValue == 'undefined'){
-		window.location = '/moneysplitin-client/login.html';
+	if(!check_login()){
+		window.location = "/moneysplitin-client/login.html";
+	}
+	else{
+		 $.ajax({
+			type: "GET",
+			url: "http://moneysplit.in/moneysplitin/events",
+			headers: {"sessioncode": $.cookie("fblogin")},
+			//data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
+            success: function (res) {
+				var obj = jQuery.parseJSON( res );
+				console.log( obj.count );
+				$("#active-events").html(obj.count);
+            }
+			});
+			$.ajax({
+			type: "GET",
+			url: "http://moneysplit.in/moneysplitin/reports",
+			headers: {"sessioncode": $.cookie("fblogin")},
+			//data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
+            success: function (res) {
+				var obj = jQuery.parseJSON( res );
+				console.log( obj);
+				//$("#active-events").html(obj.count);
+            }
+			});
 	}
         var iOwe = 300;
         var iReceive = 50;
@@ -42,7 +66,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="text-center">
-                <h2>Active Events</h2>
+                <h2>Active Events&nbsp;<span id="active-events"></span></h2>
                 <div id="canvas-holder">
                     <canvas id="chart-area" class="chart" width="300" height="300"/>
                 </div>

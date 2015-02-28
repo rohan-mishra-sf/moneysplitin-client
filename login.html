@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
     <script src="/moneysplitin-client/js/jquery/jquery-2.0.3.min.js" ></script>
     <script src="/moneysplitin-client/js/jquery/jquery.cookie.js" ></script>
+     <script src="/moneysplitin-client/js/custom.js" ></script>
 	<script src="/moneysplitin-client/js/facebook/sdk.js" ></script>
 </head>
 <body class="bg-color">
@@ -25,11 +26,9 @@
 
 <div id="fb-root"></div>
 	<script>
-	var cookieValue = $.cookie("fblogin");
-	if(typeof cookieValue != 'undefined'){
-		window.location = '/moneysplitin-client/index.html';
+	if(check_login()){
+		window.location = "/moneysplitin-client/index.html";
 	}
-	
       window.fbAsyncInit = function() {
         FB.init({
           appId      : "1592690444299818",
