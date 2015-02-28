@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My AngularJS App</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+        <script src="/moneysplitin-client/js/jquery/jquery-2.0.3.min.js" ></script>
+    <script src="/moneysplitin-client/js/jquery/jquery.cookie.js" ></script>
+     <script src="/moneysplitin-client/js/custom.js" ></script>
+    <link rel="stylesheet" href="css/app.css"/>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/multiple-select.css" />
+    	<script src="/moneysplitin-client/js/facebook/sdk.js" ></script>
+    <!--<script src="js/Chart.js"></script>-->
+</head>
+<body class="bg-color">
+
+
+    <div class="container-fluid">
+
+
+        <div class="head clearfix row">
+        <div class="col-sm-1">
+            <a href="#" class="menu-desk"></a>
+        </div>
+        <div class="col-sm-9 text-center">DINNER</div>
+        <div class="col-sm-2">
+            <div class="pull-right">
+            <a href="#" class="wallet"></a>
+            <a href="#" class="account"></a>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="center-block row">
+        <div role="tabpanel">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active col-sm-6 expense-tab"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">EXPENSE</a></li>
+                <li role="presentation" class="col-sm-6 friends-tab"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">FRIENDS</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <div class="expense">
+                        <h1>EXPENSE</h1>
+                        <table cellpadding="0" cellspacing="0" border="0" ng-app="" ng-controller="ExpensesController">
+                            <tr ng-repeat="expense in expenses">
+
+                                <td>{{expense}}</td>
+                                <td>(Rs. 2000)</td>
+                            </tr>
+
+                        </table>
+
+                        <div class="plus" ng-click="addExpense()">
+                            ADD EXPENSES
+                        <a href="#"  data-toggle="modal" data-target="#myModal">+</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <div class="expense friends">
+                        <h1>FRIENDS</h1>
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td><img src="img/sarmishta.jpg"></td>
+                                <td>SHARMISHTHA SINHA</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td><img src="img/sarmishta.jpg"></td>
+                                <td>SHARMISHTHA SINHA</td>
+
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td><img src="img/sarmishta.jpg"></td>
+                                <td>SHARMISHTHA SINHA</td>
+
+                            </tr>
+
+                        </table>
+                        <div class="plus">
+                            ADD FRIENDS
+                            <button id='openExpenseModal' data-toggle="modal" data-target="#myModal2">Add Friends</button>
+                            <!--<a href="#" id='openExpenseModal'  data-toggle="modal" data-target="#myModal2">+</a>-->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                <input type="text" value="" id='event_title' name='event_title' placeholder="Create New Event">
+                </div>
+            </div>
+            <div class="modal-footer odal-buttons">
+                <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
+                <button id="Add_Event" type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                    <h2>ADD EXPENSES</h2>
+                    <input type="text" value="" placeholder="Add Event">
+                    <input type="text" value="" placeholder="Add Price">
+                </div>
+            </div>
+            <div class="modal-footer odal-buttons">
+                <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
+                <button id="Add_Expense" type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-body">`
+            
+                <div class="text-center">
+                    <h2>ADD FRIENDS</h2>
+                    <div class="expense">
+
+                        <div class="form-group" style="height: 300px; overflow: scroll;">
+                            <script>
+                            $('input[type="checkbox"]').on('click', function (){
+                                alert('I have been checked');
+                             });
+                            </script>
+                            <table cellpadding="0" cellspacing="0" border="0" id='FB_Friends'><tr></tr></table>
+                            
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+
+            <div class="modal-footer odal-buttons">
+                <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
+                <input type="submit" name='add' id='add' value='add' class="btn btn-primary">
+            
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+
+<script src="js/jquery.multiple.select.js"></script>
+<script>
+    $(function() {
+        $('#ms').change(function() {
+            console.log($(this).val());
+        }).multipleSelect({
+            width: '100%'
+        });
+    });
+</script>
+
+<script>
+    $(function(){
+
+        $('#myTab a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+    });
+</script>
+<div id="fb-root"></div>
+
+<script type="text/javascript">              
+      
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : "1592690444299818",
+          xfbml      : true,
+          version    : 'v2.0'
+        });
+      };
+
+  document.getElementById('openExpenseModal').onclick = function() {
+  FB.login(function(response) {
+	var token = '';
+	if (response.status === 'connected') {
+		getCurrentUserInfo(response);
+		token = response.authResponse.accessToken;
+		
+	}else{
+		//alert('User closed window.');
+        $('.tabsArea').removeAttr('style');
+        $('.container').removeClass('socialExplorerArea');
+        $('ul.sleButtons a').removeClass('active');
+	}
+  }, {
+	scope:
+	//'publish_actions, public_profile, user_videos,'+
+	'user_friends,email'
+    ,auth_type: 'rerequest'
+  });
+  return false;
+}
+ function getCurrentUserInfo() {
+      FB.api('/me/friends', function(userInfo) {
+		  //console.log(userInfo);
+                  var fbthtml = '';
+                  $.each(userInfo, function (key, data) {
+                    //console.log(key)
+                    $.each(data, function (index, abc) {
+                        console.log(abc);
+                        fbthtml += '<tr><td><input id="friend_'+abc.id+'" type="checkbox" class="friends"></td><td><img src="http://graph.facebook.com/'+abc.id+'/picture?type=small"></td><td>'+abc.name+'</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+                    });
+                    //fbthtml = fbthtml+'$(".friends").on("click", function (){alert("I have been checked");})';                    
+                    $('#FB_Friends tr:last').after(fbthtml);
+                    return false;
+                });
+                //$('#FB_Friends').empty();
+                                
+      });
+    }
+    
+    
+        /*$('input[type="checkbox"]').on('click', function (){
+           alert('I have been checked');
+        });*/
+       /*$("[type=checkbox]").click(function (){
+           alert('I have been checked');
+        });*/
+    /*$('.friends').hover(function(){
+        alert('changed');
+       
+    });
+    $('.friends').change(function(){
+        alert('changed');
+       alert($(this).id()); 
+    });*/
+    
+    /*$('#assignFriendsToEvent').submit(function(){ 
+        
+        
+        $.ajax({    
+            type: "POST",
+            url: "http://moneysplit.in/moneysplitin/friends",
+            headers: {"sessioncode": $.cookie("fblogin")},
+            data: { title : event_title},
+            success: function (res) {
+                console.log(res);
+            }
+        });
+        
+    });*/
+    
+    
+
+    $.ajax({    
+        type: "GET",
+        url: "http://moneysplit.in/moneysplitin/events",
+        headers: {"sessioncode": $.cookie("fblogin")},
+        //data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
+        success: function (res) {
+            //var obj = jQuery.parseJSON( res );
+            var obj = res;
+        }
+    });
+    function ExpensesController($scope){
+        $scope.init = function(obj) {
+            $scope.expenses = obj;
+        }   
+        //$scope.expenses=["hi@email.com","hello@email.com"];
+    }
+
+    $('#Add_Event').click(function(){
+        var event_title = $('#event_title').val();
+        $.ajax({    
+            type: "POST",
+            url: "http://moneysplit.in/moneysplitin/events",
+            headers: {"sessioncode": $.cookie("fblogin")},
+            data: { title : event_title},
+            success: function (res) {
+                console.log(res);
+            }
+        });
+    });
+
+    $('#Add_Expense').click(function(){
+        var event_title = $('#event_title').val();
+        $.ajax({    
+            type: "POST",
+            url: "http://moneysplit.in/moneysplitin/events",
+            headers: {"sessioncode": $.cookie("fblogin")},
+            data: { title : event_title},
+            success: function (res) {
+                console.log(res);
+            }
+        });
+    });
+    
+</script>
+
+</body>
+</html>
+
