@@ -1,12 +1,15 @@
 <!doctype html>
-<html lang="en" ng-app="ngdemo">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My AngularJS App</title>
+    <title>Login | MoneySplit.in</title>
     <link rel="stylesheet" href="css/app.css"/>
     <link rel="stylesheet" href="css/bootstrap/bootstrap-responsive.min.css"/>
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
+    <script src="/moneysplitin-client/js/jquery/jquery-2.0.3.min.js" ></script>
+    <script src="/moneysplitin-client/js/jquery/jquery.cookie.js" ></script>
+	<script src="/moneysplitin-client/js/facebook/sdk.js" ></script>
 </head>
 <body class="bg-color">
     <div class="container-fluid">
@@ -18,5 +21,63 @@
                 <a href="test-chart.html"><img id="login" src="img/fb_btn.png"></a>
             </div>
         </div>
+       
+
+<div id="fb-root"></div>
+	<script>
+	var cookieValue = $.cookie("fblogin");
+	if(typeof cookieValue != 'undefined'){
+		window.location = '/moneysplitin-client/index.html';
+	}
+	
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : "1592690444299818",
+          xfbml      : true,
+          version    : 'v2.0'
+        });
+      };
+     
+document.getElementById('login').onclick = function() {
+  FB.login(function(response) {
+	var token = '';
+	if (response.status === 'connected') {
+		getCurrentUserInfo(response);
+		token = response.authResponse.accessToken;
+		
+	}else{
+		//alert('User closed window.');
+        $('.tabsArea').removeAttr('style');
+        $('.container').removeClass('socialExplorerArea');
+        $('ul.sleButtons a').removeClass('active');
+	}
+  }, {
+	scope:
+	//'publish_actions, public_profile, user_videos,'+
+	'user_friends, user_events, email, user_likes, user_groups, user_photos, read_friendlists, manage_friendlists'
+    ,auth_type: 'rerequest'
+  });
+  return false;
+}
+ function getCurrentUserInfo() {
+      FB.api('/me', function(userInfo) {
+		  //console.log(userInfo);
+		   //console.log(userInfo.name + ': ' + userInfo.email);
+		    //console.log(userInfo.first_name + ': ' + userInfo.last_name);
+		  $.ajax({
+			type: "POST",
+			url: "http://moneysplit.in/moneysplitin/users",
+			data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
+            success: function (res) {
+                $.cookie("fblogin", res, {expires : 1,path    : '/'});
+				window.location = '/moneysplitin-client/index.html';
+            }
+			});
+        
+      });
+    }
+
+
+    </script>
 </body>
 </html>
