@@ -19,7 +19,7 @@
 	if(!check_login()){
 	//	window.location = "/moneysplitin-client/login.html";
 	}
-	else{
+	
 		 $.ajax({
 				type: "GET",
 				url: "http://moneysplit.in/moneysplitin/events",
@@ -27,31 +27,59 @@
 				//data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
 				success: function (res) {
 					var obj = jQuery.parseJSON( res );
-					console.log( obj.count );
+					var eventhtml = '';
 					$("#active-events").html(obj.count);
+					//console.log(  obj );
+					
+					$.each( obj.data, function( key, value ) {
+						eventhtml += '<tr><td><a href="event-details.html?eid='+value.id+'">'+value.title+'</a></td><td><a href="event-details.html?eid='+value.id+'&addexpense=1">Add Expense</a></td></tr>';
+					});
+					$("#events-table").html(eventhtml);
+					//console.log( eventhtml);
 				}
 			});
-	}
-        var iOwe = 300;
-        var iReceive = 50;
+			
+			 $.ajax({
+				type: "GET",
+				url: "http://moneysplit.in/moneysplitin/reports",
+				headers: {"sessioncode": $.cookie("fblogin")},
+				//data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
+				success: function (res) {
+					var obj = jQuery.parseJSON( res );
+					$("#iOwe").html(obj.share);
+					$("#iReceive").html(obj.paid);
+					createPieChart(obj.share, obj.paid);
+					 //window.myPie.segments[0].value = obj.share;
+					//window.myPie.update();
+					
+					//window.myPie.segments[1].value = obj.paid;
+					//window.myPie.update();
+				//	console.log(obj);
+									
+				}
+			});
+			
+		function createPieChart(iOwe, iReceive){	//alert('kjsadkj');
+			
+			
         var pieData = [
                        {
-                       value: iOwe,
+                       value: parseInt(iOwe),
                        color:"#F7464A",
                        highlight: "#FF5A5E",
                        label: "Red"
                        },
                        {
-                       value: iReceive,
+                       value: parseInt(iReceive),
                        color: "#46BFBD",
                        highlight: "#5AD3D1",
                        label: "Green"
                        }
                        ];
-                       window.onload = function(){
+						   console.log(pieData);
                            var ctx = document.getElementById("chart-area").getContext("2d");
-                           window.myPie = new Chart(ctx).Pie(pieData);
-                       };
+                           var myPieChart = new Chart(ctx).Pie(pieData);
+                     }
     </script>
     <div class="container-fluid">
         <div class="row">
@@ -67,27 +95,7 @@
         <div class="row">
             <div class="text-center">
                 <div class="table-responsive events-table">
-                    <table class="table table-condensed table-striped">
-                        <tr>
-                            <td><a href="#">Goa Trip</a></td>
-                            <td><a href="#">Add Expense</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">Apartment Expenses</a></td>
-                            <td><a href="#">Add Expense</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">Colleagues</a></td>
-                            <td><a href="#">Add Expense</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">Goa Trip</a></td>
-                            <td><a href="#">Add Expense</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">Apartment Expenses</a></td>
-                            <td><a href="#">Add Expense</a></td>
-                        </tr>
+                    <table class="table table-condensed table-striped" id="events-table">
                        
                     </table>
                 </div>
@@ -110,18 +118,24 @@
                 <div class="modal-body">
                     <div class="text-center">
                         <h1>ADD EVENT</h1>
-                        <input type="text" value="" placeholder="Create New Event">
+                        <input type="text" name="event_title" value="" placeholder="Create New Event" id="event_title">
                     </div>
                 </div>
                 <div class="modal-footer odal-buttons">
                     <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" id="Add_Event">Save</button>
                 </div>
             </div>
         </div>
 
     </div>
+<script>
+               $('#Add_Event').click(function(){ 
+				   var event_title = $('#event_title').val(); 
+				   $.ajax({ type: "POST", url: "http://moneysplit.in/moneysplitin/events", headers: {"sessioncode": $.cookie("fblogin")}, data: { title : event_title}, success: function (res) { location.reload(); } }); 
+				   });
 
+</script>
 </body>
 </html>
 
