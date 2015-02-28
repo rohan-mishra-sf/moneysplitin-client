@@ -45,13 +45,13 @@
 				//data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
 				success: function (res) {
 					var obj = jQuery.parseJSON( res );
-					console.log(  obj );
+					//console.log(  obj );
 					var eventhtml = '';
 					$("#active-events").html(obj.count);
 					//console.log(  obj );
 					
 					$.each( obj.data, function( key, value ) {
-						eventhtml += '<tr><td><a href="event-details.html?eid='+value.id+'">'+value.title+'</a></td><td><a href="event-details.html?eid='+value.id+'&addexpense=1">Add Expense</a></td></tr>';
+						eventhtml += '<tr><td><a href="event-details.html?eid='+value.id+'">'+value.title+'</a></td><td><a href="event-details.html?eid='+value.id+'&addexpense=1">'+value.amount+'</a></td></tr>';
 					});
 					$("#expense-table").html(eventhtml);
 					//console.log( eventhtml);
@@ -163,7 +163,7 @@
             </div>
             <div class="modal-footer odal-buttons">
                 <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
-                <button id="Add_Expense" type="button" class="btn btn-primary">Save</button>
+                <button id="Add_Expense" type="button" class="btn btn-primary">Next</button>
             </div>
         </div>
     </div>
@@ -330,18 +330,23 @@
     }
 
 
-    $('#Add_Expense').click(function(){
+    //$('#Add_Expense').click(function(){
         var event_title = $('#event_title').val();
         $.ajax({    
-            type: "POST",
-            url: "http://moneysplit.in/moneysplitin/events",
+            type: "GET",
+            url: "http://moneysplit.in/moneysplitin/friends/"+eid,
             headers: {"sessioncode": $.cookie("fblogin")},
-            data: { title : event_title},
+            //data: { title : event_title},
             success: function (res) {
-                console.log(res);
+				 var obj = jQuery.parseJSON( res );
+				  $.each(obj.data, function (index, abc) {
+                        console.log(abc);
+                        fbthtml += '<tr><td><input id="friend_'+abc.id+'" type="checkbox" class="friends"></td><td><img src="http://graph.facebook.com/'+abc.id+'/picture?type=small"></td><td>'+abc.name+'</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+                    });
+               // console.log(obj);
             }
         });
-    });
+    //});
     
 </script>
 
