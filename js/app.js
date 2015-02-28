@@ -11,7 +11,7 @@ angular.module('ngdemo', ['ngdemo.filters', 'ngdemo.services', 'ngdemo.directive
     }]);
 
 
-angular.module('myApp', ['ngFacebook'])
+angular.module('ngdemo', ['ngFacebook'])
 .config(['$facebookProvider', function($facebookProvider) {
          $facebookProvider.setAppId('1592690444299818').setPermissions(['email','user_friends']);
          }])
@@ -27,29 +27,4 @@ angular.module('myApp', ['ngFacebook'])
                      $window.dispatchEvent(new Event('fb.load'));
                      });
       }])
-.controller('myCtrl', ['$scope', '$facebook', function($scope, $facebook) {
-                       $scope.$on('fb.auth.authResponseChange', function() {
-                                  $scope.status = $facebook.isConnected();
-                                  if($scope.status) {
-                                  $facebook.api('/me').then(function(user) {
-                                                            $scope.user = user;
-                                                            });
-                                  }
-                                  });
-                       
-                       $scope.loginToggle = function() {
-                       if($scope.status) {
-                       $facebook.logout();
-                       } else {
-                       $facebook.login();
-                       }
-                       };
-                       
-                       $scope.getFriends = function() {
-                       if(!$scope.status) return;
-                       $facebook.cachedApi('/me/friends').then(function(friends) {
-                                                               $scope.friends = friends.data;
-                                                               });
-                       }
-                       }])
 ;
