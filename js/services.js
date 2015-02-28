@@ -14,7 +14,6 @@
  'delete': {method:'DELETE'}
 
  */
-var apiHost = "52.11.53.212/moneysplitin";
 var services = angular.module('ngdemo.services', ['ngResource']);
 
 services.factory('DummyFactory', function ($resource) {
@@ -24,7 +23,7 @@ services.factory('DummyFactory', function ($resource) {
 });
 
 services.factory('UsersFactory', function ($resource) {
-    return $resource(apiHost+'/users', {}, {
+    return $resource('/moneysplitin/users', {}, {
         query: { method: 'GET', isArray: true },
         create: { method: 'POST' }
     })
