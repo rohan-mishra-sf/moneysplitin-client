@@ -11,7 +11,7 @@ angular.module('ngdemo', ['ngdemo.filters', 'ngdemo.services', 'ngdemo.directive
     }]);
 
 
-angular.module('ngdemo', ['ngFacebook'])
+angular.module('myApp', ['ngFacebook'])
 .config(['$facebookProvider', function($facebookProvider) {
          $facebookProvider.setAppId('1592690444299818').setPermissions(['email','user_friends']);
          }])
