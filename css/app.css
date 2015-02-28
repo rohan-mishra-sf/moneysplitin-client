@@ -53,6 +53,12 @@
 
 .bg-color{
     background-color:green;
+    padding: 0;
+}
+
+.bg-grey-color{
+    background: #e0e0e0;
+    padding: 0;
 }
 
 .hover-button a{
@@ -153,6 +159,10 @@
     margin-bottom: 10px;
 }
 
+.modal input[type="checkbox"]{
+    width: 13px;
+}
+
 
 
 .expense .plus a:hover, .friends .plus a:hover, .expense .plus a:focus, .friends .plus a:focus{
@@ -170,6 +180,10 @@
 .nav-tabs > li{
     padding: 0;
 }
+.expense-tab{
+    border-right: 2px solid #c9c9c9;
+}
+
 .expense-tab, .friends-tab{
     text-align: center;
     color: #000;
@@ -184,6 +198,9 @@
 
 .expense{
     color: #fd5353;
+    box-shadow: 0px 10px 52px 0 #999;
+    -moz-box-shadow: 0px 10px 52px 0 #999;
+    -webkit-box-shadow: 0px 10px 52px 0 #999;
 }
 
 .expense-tab.active{
@@ -203,20 +220,100 @@
 
 .expense.friends{
     color: #00bcd2;
+    box-shadow: 0px 10px 52px 0 #999;
+    -moz-box-shadow: 0px 10px 52px 0 #999;
+    -webkit-box-shadow: 0px 10px 52px 0 #999;
 }
 .expense.friends h1{
     color: #00bcd2;
 }
+.expense.friends table td{
+    padding: 0 5px;
+}
 
+.back, .heading, .icons{
+    float: left;
+}
+.back{
+    width: 10%;
+}
+.heading{
+    width: 70%;
+}
+.icons{
+    width: 20%;
+}
+.table{
+    text-align: left;
+    box-shadow: 0px 10px 52px 0 #999;
+    -moz-box-shadow: 0px 10px 52px 0 #999;
+    -webkit-box-shadow: 0px 10px 52px 0 #999;
+    margin-top: 30px;
+}
+.table td{
+    padding: 10px  !important;
+    color: #00bcd2;
+    padding: 5px;
+    border-top: 1px solid #d5d8dd;
+    border-bottom: 1px solid #d5d8dd;
+    font-size: 18px;
+}
 
+.nav-tabs > li > a{
+    background: #fff !important;
+    border: 0 !important;
+}
 
 @media only screen and (max-width: 767px){
-    
+
+    .menu-desk, .wallet, .account{
+        background-size: 88%;
+    }
+    .wallet {
+        background-position: 0 -44px;
+        width: 37px;
+        height: 23px;
+    }
+    .account {
+        background-position: 0 -21px;
+        width: 37px;
+        height: 23px;
+    }
+    .menu-desk {
+        background-position: 0 0;
+        width: 37px;
+        height: 21px;
+    }
+
+h1{
+    font-size: 21px;
+}
+
+.expense-tab.active, .expense table td{
+    font-size: 17px;
+}
+.expense h1{
+    font-size: 20px;
+    margin-top: 0;
+}
 .login-logo, .fb-login-btn{
      width: 80%;
      position: relative;
      margin-top: 20px;
 }
+    h2{
+        font-size: 18px;
+    }
+}
 
+
+@media only screen and (max-width: 432px){
+
+    .heading{
+        width: 65%;
+    }
+    .icons{
+        width: 25%;
+    }
 
 }
