@@ -6,17 +6,18 @@
     <title>My AngularJS App</title>
     <link rel="stylesheet" href="css/app.css"/>
     <link rel="stylesheet" href="css/bootstrap/bootstrap-responsive.min.css"/>
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <script src="js/Chart.js"></script>
-    <script src="/moneysplitin-client/js/jquery/jquery-2.0.3.min.js" ></script>
-    <script src="/moneysplitin-client/js/jquery/jquery.cookie.js" ></script>
-    <script src="/moneysplitin-client/js/custom.js" ></script>
-	<script src="/moneysplitin-client/js/facebook/sdk.js" ></script>
+    <script src="js/jquery/jquery-2.0.3.min.js" ></script>
+    <script src="js/jquery/jquery.cookie.js" ></script>
+    <script src="js/custom.js" ></script>
+	<script src="js/facebook/sdk.js" ></script>
+    <script src="js/bootstrap.min.js"></script>
 </head>
-<body class="bg-color">
+<body class="bg-grey-color">
     <script>
 	if(!check_login()){
-		window.location = "/moneysplitin-client/login.html";
+	//	window.location = "/moneysplitin-client/login.html";
 	}
 	else{
 		 $.ajax({
@@ -54,7 +55,7 @@
     </script>
     <div class="container-fluid">
         <div class="row">
-            <div class="text-center">
+            <div class="text-center head">
                 <h2>Active Events&nbsp;<span id="active-events"></span></h2>
                 <div id="canvas-holder">
                     <canvas id="chart-area" class="chart" width="300" height="300"/>
@@ -68,33 +69,57 @@
                 <div class="table-responsive events-table">
                     <table class="table table-condensed table-striped">
                         <tr>
-                            <td>Goa Trip</td>
-                            <td>Add Expense</td>
+                            <td><a href="#">Goa Trip</a></td>
+                            <td><a href="#">Add Expense</a></td>
                         </tr>
                         <tr>
-                            <td>Apartment Expenses</td>
-                            <td>Add Expense</td>
+                            <td><a href="#">Apartment Expenses</a></td>
+                            <td><a href="#">Add Expense</a></td>
                         </tr>
                         <tr>
-                            <td>Colleagues</td>
-                            <td>Add Expense</td>
+                            <td><a href="#">Colleagues</a></td>
+                            <td><a href="#">Add Expense</a></td>
                         </tr>
                         <tr>
-                            <td>Goa Trip</td>
-                            <td>Add Expense</td>
+                            <td><a href="#">Goa Trip</a></td>
+                            <td><a href="#">Add Expense</a></td>
                         </tr>
                         <tr>
-                            <td>Apartment Expenses</td>
-                            <td>Add Expense</td>
+                            <td><a href="#">Apartment Expenses</a></td>
+                            <td><a href="#">Add Expense</a></td>
                         </tr>
                        
                     </table>
                 </div>
             </div>
         </div>
-        <div class="hover-button" id="addNewEvent">
-            <a href="#"><img src="img/add_icon_event.png" /></a>
+
+        <div class="active">
+            <div class="plus">
+
+            <a href="#"  data-toggle="modal" data-target="#myModal">+</a>
+            </div>
         </div>
+
+
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <h1>ADD EVENT</h1>
+                        <input type="text" value="" placeholder="Create New Event">
+                    </div>
+                </div>
+                <div class="modal-footer odal-buttons">
+                    <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </body>
