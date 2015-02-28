@@ -26,9 +26,11 @@
 
 <div id="fb-root"></div>
 	<script>
-	if(check_login()){
-		window.location = "/moneysplitin-client/index.html";
-	}
+		window.onload = function(){
+			if(check_login()){
+				window.location = "/moneysplitin-client/index.html";
+			}
+		}
       window.fbAsyncInit = function() {
         FB.init({
           appId      : "1592690444299818",

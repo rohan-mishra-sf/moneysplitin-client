@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="ngdemo">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,26 +20,15 @@
 	}
 	else{
 		 $.ajax({
-			type: "GET",
-			url: "http://moneysplit.in/moneysplitin/events",
-			headers: {"sessioncode": $.cookie("fblogin")},
-			//data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
-            success: function (res) {
-				var obj = jQuery.parseJSON( res );
-				console.log( obj.count );
-				$("#active-events").html(obj.count);
-            }
-			});
-			$.ajax({
-			type: "GET",
-			url: "http://moneysplit.in/moneysplitin/reports",
-			headers: {"sessioncode": $.cookie("fblogin")},
-			//data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
-            success: function (res) {
-				var obj = jQuery.parseJSON( res );
-				console.log( obj);
-				//$("#active-events").html(obj.count);
-            }
+				type: "GET",
+				url: "http://moneysplit.in/moneysplitin/events",
+				headers: {"sessioncode": $.cookie("fblogin")},
+				//data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
+				success: function (res) {
+					var obj = jQuery.parseJSON( res );
+					console.log( obj.count );
+					$("#active-events").html(obj.count);
+				}
 			});
 	}
         var iOwe = 300;
