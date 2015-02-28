@@ -140,7 +140,14 @@
     color: #333;
     font-size: 18px;
 }
-.expense .plus a, .friends .plus a{
+.active .plus{
+    bottom: 20px;
+    right: 20px;
+    position: absolute;
+    color: #333;
+    font-size: 18px;
+}
+.expense .plus a, .friends .plus a, .active .plus a{
     background: #00bcd5;
     color: #015f6b;
     padding: 10px;
@@ -172,6 +179,19 @@
 .friends .plus a{
     background: #ff5353;
     color: #7e2827;
+}
+
+.active .plus a{
+    background: #f5db03;
+    color: #625802;
+}
+
+.active .plus a:hover{
+    text-decoration: none;
+}
+
+.active .plus a:focus{
+    text-decoration: none;
 }
 
 .nav-tabs{
@@ -257,6 +277,10 @@
     border-top: 1px solid #d5d8dd;
     border-bottom: 1px solid #d5d8dd;
     font-size: 18px;
+}
+
+.table td a{
+    color: #00bcd5;
 }
 
 .nav-tabs > li > a{
