@@ -37,8 +37,32 @@
     max-width: 300px;
 }
 
+.chart{
+    width: 300px;
+    height:300px;
+    position: relative;
+    margin:auto;
+    margin-top: 30px;
+    max-width: 300px;
+}
+
+.events-table{
+    padding-right:5%;
+    padding-left:5%;
+}
+
 .bg-color{
     background-color:green;
+}
+
+.hover-button a{
+    position:fixed;
+    bottom:10%;
+    right:10%;
+}
+
+.hover-button img{
+    width:80px;
 }
 
 @media only screen and (max-width: 767px){
