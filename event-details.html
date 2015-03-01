@@ -183,7 +183,7 @@
 		 // debugger;
 		   if(logexpense == 1){
                     $('#myModal').modal('show');
-                    $.cookie('expense', null);
+                    $.removeCookie("expense");
                 }
                 var addfriend = getUrlParameter('addfriend');
                 if(addfriend ==1){
@@ -421,7 +421,7 @@
     function apiResponseCheck(res){
 			var obj = jQuery.parseJSON( res );
 			if(obj.success=='false' && obj.message=='not logged in') {
-				$.cookie('fblogin', null);
+				$.removeCookie("fblogin");
 				window.location = 'login.html';
 				}
 			return false;	

@@ -1,6 +1,6 @@
 function fb_logout(){
 	$.removeCookie("fblogin");
-	window.location = '/moneysplitin-client/login.html';
+	window.location = 'login.html';
 }
 
 function check_login(){
