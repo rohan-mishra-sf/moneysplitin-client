@@ -1,5 +1,7 @@
 function fb_logout(){
-	$.removeCookie("fblogin");
+	var date = new Date();
+	date.setTime(date.getTime() - (10 * 60 * 1000));
+	$.cookie("fblogin", "", { expires: date });
 	window.location = 'login.html';
 }
 

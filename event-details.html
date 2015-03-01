@@ -421,8 +421,7 @@
     function apiResponseCheck(res){
 			var obj = jQuery.parseJSON( res );
 			if(obj.success=='false' && obj.message=='not logged in') {
-				$.removeCookie("fblogin");
-				window.location = 'login.html';
+				fb_logout();
 				}
 			return false;	
 		}
