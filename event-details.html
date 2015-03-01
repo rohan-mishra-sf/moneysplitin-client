@@ -253,7 +253,7 @@
                         fbthtml += '<tr><td><input id="'+abc.id+'" type="checkbox" class="friends"></td><td><img src="http://graph.facebook.com/'+abc.id+'/picture?type=small"></td><td>'+abc.name+'</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
                     });
                     //fbthtml = fbthtml+'$(".friends").on("click", function (){alert("I have been checked");})';                    
-                    $('#FB_Friends tr:last').after(fbthtml);
+                    $('#FB_Friends').html(fbthtml);
                     return false;
                 });
                 //$('#FB_Friends').empty();
