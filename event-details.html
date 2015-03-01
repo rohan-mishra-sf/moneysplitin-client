@@ -409,7 +409,7 @@
             headers: {"sessioncode": $.cookie("fblogin")},
            data: a,
             success: function (res) {
-				apiResponseCheck(res);
+					apiResponseCheck(res);
 				 var obj = jQuery.parseJSON( res );
 				 console.log(obj);
 				 location.reload();
@@ -424,6 +424,7 @@
 				$.cookie('fblogin', null);
 				window.location = 'login.html';
 				}
+			return false;	
 		}
 </script>
 
