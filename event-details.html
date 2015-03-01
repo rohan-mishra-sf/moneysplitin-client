@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Details | MoneySplit.in</title>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
         <script src="/moneysplitin-client/js/jquery/jquery-2.0.3.min.js" ></script>
     <script src="/moneysplitin-client/js/jquery/jquery.cookie.js" ></script>
      <script src="/moneysplitin-client/js/custom.js" ></script>
+     <script src="js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="css/app.css"/>
     <link rel="stylesheet" href="css/bootstrap/bootstrap-responsive.min.css"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
@@ -25,46 +26,13 @@
 		
 		function getUrlParameter(sParam)
 			{
-				var sPageURL = window.location.search.substring(1);
-				var sURLVariables = sPageURL.split('&');
-				for (var i = 0; i < sURLVariables.length; i++) 
-				{
-					var sParameterName = sURLVariables[i].split('=');
-					if (sParameterName[0] == sParam) 
-					{
-						return sParameterName[1];
-					}
-				}
+				return $.cookie(sParam);
 			} 
 		var eid = getUrlParameter('eid');
-                var expenseid = getUrlParameter('addexpense');
-                if(expenseid ==1){
-                    $('#myModal').modal('show');
-                }
-                var addfriend = getUrlParameter('addfriend');
-                if(addfriend ==1){
-                    $('#myModal2').modal('show');
-                }
+         var logexpense = getUrlParameter('expense');
+               
 		//alert($.cookie("fblogin"));
-		 $.ajax({
-				type: "GET",
-				url: 'http://moneysplit.in/moneysplitin/expenses/'+eid,
-				headers: {"sessioncode": $.cookie("fblogin")},
-				//data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
-				success: function (res) {
-					var obj = jQuery.parseJSON( res );
-					//console.log(  obj );
-					var eventhtml = '';
-					$("#active-events").html(obj.count);
-					//console.log(  obj );
-					
-					$.each( obj.data, function( key, value ) {
-						eventhtml += '<tr><td><a href="event-details.html?eid='+value.id+'">'+value.title+'</a></td><td><a href="event-details.html?eid='+value.id+'&addexpense=1">'+value.amount+'</a></td></tr>';
-					});
-					$("#expense-table").html(eventhtml);
-					//console.log( eventhtml);
-				}
-			});
+		 
 	
 	</script>
 
@@ -165,9 +133,10 @@
             <div class="modal-body">
                 <div class="text-center">
                     <h2>ADD EXPENSES</h2>
+                    <form id="expense-form">
                     <input type="text" value="" id="add_exp_event" placeholder="Add Event" required>
                     <input type="text" value="" id="add_exp_price" placeholder="Add Price" required>
-                     <table cellpadding="0" cellspacing="0" border="0" id='FB_Friends_Exp' class="table table-condensed"><tr></tr></table>
+                     </form><table cellpadding="0" cellspacing="0" border="0" id='FB_Friends_Exp' class="table table-condensed"><tr></tr></table>
                 </div>
             </div>
             <div class="modal-footer odal-buttons">
@@ -240,6 +209,35 @@
 
 <script type="text/javascript">              
       $(function(){
+		 // debugger;
+		   if(logexpense == 1){
+                    $('#myModal').modal('show');
+                    $.cookie('expense', null);
+                }
+                var addfriend = getUrlParameter('addfriend');
+                if(addfriend ==1){
+                    $('#myModal2').modal('show');
+                }
+                $.ajax({
+				type: "GET",
+				url: 'http://moneysplit.in/moneysplitin/expenses/'+eid,
+				headers: {"sessioncode": $.cookie("fblogin")},
+				//data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
+				success: function (res) {
+					var obj = jQuery.parseJSON( res );
+					//console.log(  obj );
+					var eventhtml = '';
+					$("#active-events").html(obj.count);
+					//console.log(  obj );
+					
+					$.each( obj.data, function( key, value ) {
+						eventhtml += '<tr><td><a href="event-details.html?eid='+value.id+'">'+value.title+'</a></td><td><a href="event-details.html?eid='+value.id+'&addexpense=1">'+value.amount+'</a></td></tr>';
+					});
+					$("#expense-table").html(eventhtml);
+					//console.log( eventhtml);
+				}
+			});
+				
 		  $(document).on('click','.friends', function(e){
 			  //	  alert($(this).attr('id'));
 			  });
@@ -364,7 +362,10 @@
         });
     //});
      $('#Add_Expense').click(function(){
-	if()
+		if(! $("#expense-form").valid()){
+		alert('Missing field');
+		return;
+		}
 					  var a = {};
 			  a.sharers = new Array();
 			  a.title=$("#add_exp_event").val();
