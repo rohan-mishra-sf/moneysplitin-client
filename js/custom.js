@@ -5,7 +5,7 @@ function fb_logout(){
 
 function check_login(){
 	var cookieValue = $.cookie("fblogin");
-	if(typeof cookieValue != 'undefined'){
+	if(typeof cookieValue != 'undefined' || cookieValue != null){
 		return true;
 	}
 	else{
