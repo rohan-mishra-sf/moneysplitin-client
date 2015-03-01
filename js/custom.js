@@ -7,7 +7,7 @@ function fb_logout(){
 
 function check_login(){
 	var cookieValue = $.cookie("fblogin");
-	if(typeof cookieValue != null ){
+	if(typeof cookieValue != 'undefined' ){
 		return true;
 	}
 	else{
