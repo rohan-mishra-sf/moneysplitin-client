@@ -82,32 +82,8 @@
                 <div role="tabpanel" class="tab-pane" id="profile">
                     <div class="expense friends">
                         <h1>FRIENDS</h1>
-                        <table cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                                <td><img src="img/sarmishta.jpg"></td>
-                                <td>SHARMISHTHA SINHA</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-
-                            </tr>
-                            <tr>
-                                <td><img src="img/sarmishta.jpg"></td>
-                                <td>SHARMISHTHA SINHA</td>
-
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-
-                            </tr>
-                            <tr>
-                                <td><img src="img/sarmishta.jpg"></td>
-                                <td>SHARMISHTHA SINHA</td>
-
-                            </tr>
-
+                        <table cellpadding="0" cellspacing="0" border="0" id="facebookfriends">
+                            <tr></tr>
                         </table>
                         <div class="plus">
                             ADD FRIENDS
@@ -234,7 +210,7 @@
 			});
 				
 		  $(document).on('click','.friends', function(e){
-			  	 // alert($(this).attr('id'));
+
 			  });
 		});
       window.fbAsyncInit = function() {
@@ -339,6 +315,7 @@
     //$('#Add_Expense').click(function(){
         var event_title = $('#event_title').val();
         var fbthtml = '';
+        var facebookthtml = '';
         $.ajax({    
             type: "GET",
             url: "http://moneysplit.in/moneysplitin/friends/"+eid,
@@ -350,12 +327,16 @@
 				  if(!obj.count){
 					$('#myModal > div .text-center ').html("<h2>Looks like you haven't added any Friends</h2><p>When you add your friends to an event, it becomes very easy to record expenses and split with them. So get started now and <a id='openExpenseModal' data-target='#myModal2' data-toggle='modal'>Click Here to Add Friends</a> </p>")
 					  }
+
 				  $.each(obj.data, function (index, abc) {
                         console.log(index);
                         fbthtml += '<tr><td><input id="'+index+'" type="checkbox" class="friends"></td><td><img src="http://graph.facebook.com/'+abc.fb_id+'/picture?type=small"></td><td>'+abc.name+'</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+                        facebookthtml += '<tr><td><img src="http://graph.facebook.com/'+abc.fb_id+'/picture?type=small"></td><td>'+abc.name+'</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
                     });
                     //fbthtml = fbthtml+'$(".friends").on("click", function (){alert("I have been checked");})';                    
                     $('#FB_Friends_Exp').html(fbthtml);
+                    $('#facebookfriends').html(facebookthtml);
+                    
                // console.log(obj);
             }
         });
