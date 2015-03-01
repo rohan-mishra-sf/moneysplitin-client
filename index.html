@@ -35,13 +35,21 @@
                                         $('#first_login').html('<h2>Welcome to MoneySplit.in</h2><p>Get started by <a data-target="#myModal" data-toggle="modal" >Adding an Event</a></p>');
                                         }
 					$.each( obj.data, function( key, value ) {
-						eventhtml += '<tr><td><a href="event-details.html?eid='+value.id+'">'+value.title+'</a></td><td><a href="event-details.html?eid='+value.id+'&addexpense=1">Add Expense</a></td></tr>';
+						eventhtml += '<tr><td><a href="event-details.html" onclick="setEventId('+value.id+')">'+value.title+'</a></td><td><a href="event-details.html" onclick="setEventExpense('+value.id+',1)">Add Expense</a></td></tr>';
 					});
 					$("#events-table").html(eventhtml);
 					//console.log( eventhtml);
 				}
 			});
-			
+			function setEventExpense(eid,exp){
+					$.cookie('eid',eid);
+					$.cookie('expense',exp);
+				};
+
+				function setEventId(eid){
+						setEventExpense(eid,null);
+					};
+					
 			 $.ajax({
 				type: "GET",
 				url: "http://moneysplit.in/moneysplitin/reports",
