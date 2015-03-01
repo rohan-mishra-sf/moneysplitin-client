@@ -28,7 +28,7 @@
 	<script>
 		window.onload = function(){
 			if(check_login()){
-				window.location = "/moneysplitin-client/index.html";
+				window.location = "index.html";
 			}
 		}
       window.fbAsyncInit = function() {
@@ -71,7 +71,7 @@ document.getElementById('login').onclick = function() {
 			data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
             success: function (res) {
                 $.cookie("fblogin", res, {expires : 1,path    : '/'});
-				window.location = '/moneysplitin-client/index.html';
+				window.location = 'index.html';
             }
 			});
         
