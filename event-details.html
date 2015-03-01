@@ -37,6 +37,14 @@
 				}
 			} 
 		var eid = getUrlParameter('eid');
+                var expenseid = getUrlParameter('addexpense');
+                if(expenseid ==1){
+                    $('#myModal').modal('show');
+                }
+                var addfriend = getUrlParameter('addfriend');
+                if(addfriend ==1){
+                    $('#myModal2').modal('show');
+                }
 		//alert($.cookie("fblogin"));
 		 $.ajax({
 				type: "GET",
