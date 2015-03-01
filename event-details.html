@@ -234,7 +234,7 @@
 			});
 				
 		  $(document).on('click','.friends', function(e){
-			  	  alert($(this).attr('id'));
+			  	 // alert($(this).attr('id'));
 			  });
 		});
       window.fbAsyncInit = function() {
@@ -345,7 +345,11 @@
             headers: {"sessioncode": $.cookie("fblogin")},
             //data: { title : event_title},
             success: function (res) {
+				 
 				 var obj = jQuery.parseJSON( res );
+				  if(!obj.count){
+					$('#myModal > div .text-center ').html("<h2>Looks like you haven't added any Friends</h2><p>When you add your friends to an event, it becomes very easy to record expenses and split with them. So get started now and <a id='openExpenseModal' data-target='#myModal2' data-toggle='modal'>Click Here to Add Friends</a> </p>")
+					  }
 				  $.each(obj.data, function (index, abc) {
                         console.log(index);
                         fbthtml += '<tr><td><input id="'+index+'" type="checkbox" class="friends"></td><td><img src="http://graph.facebook.com/'+abc.fb_id+'/picture?type=small"></td><td>'+abc.name+'</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
@@ -357,28 +361,27 @@
         });
     //});
      $('#Add_Expense').click(function(){
-		if(! $("#expense-form").valid()){
-		alert('Missing field');
-		return;
+		if(!$("#expense-form").valid()){
+			alert('Missing field');
+			return;
 		}
-					  var a = {};
-			  a.sharers = new Array();
-			  a.title=$("#add_exp_event").val();
-    a.amount= $("#add_exp_price").val();
-    a.events_id= eid;
+		var a = {};
+		a.sharers = new Array();
+		a.title=$("#add_exp_event").val();
+		a.amount= $("#add_exp_price").val();
+		a.events_id= eid;
     
-    $("input:checkbox").each(function(){
-		var $this = $(this);
+		$("input:checkbox").each(function(){
+			var $this = $(this);
 
-		if($this.is(":checked")){
-			var shr1= {};
-			shr1.users_id = $this.attr("id");
-			a.sharers.push(shr1);
-		}
-	});
-		 
-    //console.log(JSON.stringify(a));
-	$.ajax({    
+			if($this.is(":checked")){
+				var shr1= {};
+				shr1.users_id = $this.attr("id");
+				a.sharers.push(shr1);
+			}
+		});
+
+		$.ajax({    
             type: "POST",
             url: "http://moneysplit.in/moneysplitin/expenses/",
             headers: {"sessioncode": $.cookie("fblogin")},
