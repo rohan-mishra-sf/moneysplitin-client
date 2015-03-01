@@ -331,7 +331,7 @@
 				  $.each(obj.data, function (index, abc) {
                         console.log(index);
                         fbthtml += '<tr><td><input id="'+index+'" type="checkbox" class="friends"></td><td><img src="http://graph.facebook.com/'+abc.fb_id+'/picture?type=small"></td><td>'+abc.name+'</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
-                        facebookthtml += '<tr><td><img src="http://graph.facebook.com/'+abc.fb_id+'/picture?type=small"></td><td>'+abc.name+'</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+                        facebookthtml += '<tr><td><img src="http://graph.facebook.com/'+abc.fb_id+'/picture?type=small"></td><td>'+abc.name+'</td><td>'+abc.amountdiff+'</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr>';
                     });
                     //fbthtml = fbthtml+'$(".friends").on("click", function (){alert("I have been checked");})';                    
                     $('#FB_Friends_Exp').html(fbthtml);
