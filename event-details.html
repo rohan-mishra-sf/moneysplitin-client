@@ -43,7 +43,7 @@
         <div class="col-sm-1">
             <a href="#" class="menu-desk"></a>
         </div>
-        <div class="col-sm-9 text-center">DINNER</div>
+        <div class="col-sm-9 text-center" id="EventTitle"></div>
         <div class="col-sm-2">
             <div class="pull-right">
             <a href="#" class="wallet"></a>
@@ -87,8 +87,8 @@
                         </table>
                         <div class="plus">
                             ADD FRIENDS
-                            <button id='openExpenseModal' data-toggle="modal" data-target="#myModal2">Add Friends</button>
-                            <!--<a href="#" id='openExpenseModal'  data-toggle="modal" data-target="#myModal2">+</a>-->
+                            <!--button id='openExpenseModal' data-toggle="modal" data-target="#myModal2">Add Friends</button-->
+                            <a href="#" id='openExpenseModal'  data-toggle="modal" data-target="#myModal2">+</a>
                         </div>
 
                     </div>
@@ -296,12 +296,15 @@
 
     $.ajax({    
         type: "GET",
-        url: "http://moneysplit.in/moneysplitin/events",
+        url: "http://moneysplit.in/moneysplitin/events/"+eid,
         headers: {"sessioncode": $.cookie("fblogin")},
         //data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
         success: function (res) {
-            //var obj = jQuery.parseJSON( res );
-            var obj = res;
+            var obj = jQuery.parseJSON( res );
+            //var obj = res;
+            
+            console.log(obj.title);
+            $('#EventTitle').html(obj.title);
         }
     });
     function ExpensesController($scope){
@@ -325,7 +328,7 @@
 				 
 				 var obj = jQuery.parseJSON( res );
 				  if(!obj.count){
-					$('#myModal > div .text-center ').html("<h2>Looks like you haven't added any Friends</h2><p>When you add your friends to an event, it becomes very easy to record expenses and split with them. So get started now and <a id='openExpenseModal' data-target='#myModal2' data-toggle='modal'>Click Here to Add Friends</a> </p>")
+					$('#myModal > div .text-center ').html("<h2>Looks like you haven't added any Friends</h2><p>When you add your friends to an event, it becomes very easy to record expenses and split with them. So get started now and <a href='#' onclick='switchToFriends();'>Click Here to Add Friends</a> </p>")
 					  }
 
 				  $.each(obj.data, function (index, abc) {
@@ -341,6 +344,10 @@
             }
         });
     //});
+    function switchToFriends(){
+			$('#myModal').modal('hide');
+			$('.friends-tab > a').click();
+		}
      $('#Add_Expense').click(function(){
 		if(!$("#expense-form").valid()){
 			alert('Missing field');
@@ -393,7 +400,8 @@
 			a.friends.push(shr1);
 		}
 	});
-		 
+	
+	
     console.log(JSON.stringify(a));
 	$.ajax({    
             type: "POST",
@@ -401,6 +409,7 @@
             headers: {"sessioncode": $.cookie("fblogin")},
            data: a,
             success: function (res) {
+				apiResponseCheck(res);
 				 var obj = jQuery.parseJSON( res );
 				 console.log(obj);
 				 location.reload();
@@ -408,6 +417,14 @@
             }
         });
     });
+    
+    function apiResponseCheck(res){
+			var obj = jQuery.parseJSON( res );
+			if(obj.success=='false' && obj.message=='not logged in') {
+				$.cookie('fblogin', null);
+				window.location = 'login.html';
+				}
+		}
 </script>
 
 </body>
