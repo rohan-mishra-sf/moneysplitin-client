@@ -50,6 +50,9 @@
 						setEventExpense(eid,null);
 					};
 					
+                                        function setAddFriend(addFriend){
+                                            $.cookie('addFriend',addFriend);
+                                        };
 			 $.ajax({
 				type: "GET",
 				url: "http://moneysplit.in/moneysplitin/reports",
@@ -150,7 +153,7 @@ An event is a broad account to which you can add your expenses and split with yo
 <script>
                $('#Add_Event').click(function(){ 
 				   var event_title = $('#event_title').val(); 
-				   $.ajax({ type: "POST", url: "http://moneysplit.in/moneysplitin/events", headers: {"sessioncode": $.cookie("fblogin")}, data: { title : event_title}, success: function (res) { setEventExpense(res.event_id,null); window.location='event-details.html?addfriend=1'; } });
+				   $.ajax({ type: "POST", url: "http://moneysplit.in/moneysplitin/events", headers: {"sessioncode": $.cookie("fblogin")}, data: { title : event_title}, success: function (res) { setEventExpense(res.event_id,null); setAddFriend(addFriend); window.location='event-details.html?addfriend=1'; } });
 				   });
 
 </script>
