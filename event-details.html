@@ -300,10 +300,10 @@
         headers: {"sessioncode": $.cookie("fblogin")},
         //data: { first_name: userInfo.first_name,last_name: userInfo.last_name,email: userInfo.email,fb_id: userInfo.id,device_token: ''},
         success: function (res) {
+			apiResponseCheck(res);
             var obj = jQuery.parseJSON( res );
             //var obj = res;
             
-            console.log(obj.title);
             $('#EventTitle').html(obj.title);
         }
     });
