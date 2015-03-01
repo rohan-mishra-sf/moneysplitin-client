@@ -191,12 +191,7 @@
                     <h2>ADD FRIENDS</h2>
                     <div class="expense">
 
-                        <div class="form-group" style="height: 300px; overflow: scroll;">
-                            <script>
-                            $('input[type="checkbox"]').on('click', function (){
-                                alert('I have been checked');
-                             });
-                            </script>
+                        <div class="form-group" style="height: 300px; overflow: scroll;">                            
                             <table cellpadding="0" cellspacing="0" border="0" id='FB_Friends'><tr></tr></table>
                             
                         </div>
@@ -207,7 +202,7 @@
 
             <div class="modal-footer odal-buttons">
                 <button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
-                <input type="submit" name='add' id='add' value='add' class="btn btn-primary">
+                <input type="submit" name='add' id='add_friends_to_event' value='add' class="btn btn-primary">
             
             </div>
             
@@ -241,7 +236,7 @@
 <script type="text/javascript">              
       $(function(){
 		  $(document).on('click','.friends', function(e){
-			  //	  alert($(this).attr('id'));
+			  	  alert($(this).attr('id'));
 			  });
 		});
       window.fbAsyncInit = function() {
@@ -281,7 +276,7 @@
                     //console.log(key)
                     $.each(data, function (index, abc) {
                         console.log(abc);
-                        fbthtml += '<tr><td><input id="friend_'+abc.id+'" type="checkbox" class="friends"></td><td><img src="http://graph.facebook.com/'+abc.id+'/picture?type=small"></td><td>'+abc.name+'</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+                        fbthtml += '<tr><td><input id="'+abc.id+'" type="checkbox" class="friends"></td><td><img src="http://graph.facebook.com/'+abc.id+'/picture?type=small"></td><td>'+abc.name+'</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
                     });
                     //fbthtml = fbthtml+'$(".friends").on("click", function (){alert("I have been checked");})';                    
                     $('#FB_Friends tr:last').after(fbthtml);
@@ -364,7 +359,7 @@
         });
     //});
      $('#Add_Expense').click(function(){
-	if()
+	//if()
 					  var a = {};
 			  a.sharers = new Array();
 			  a.title=$("#add_exp_event").val();
@@ -396,6 +391,38 @@
         });
     });
     
+    
+        $('#add_friends_to_event').click(function(){
+	//if()
+					  var a = {};
+			  a.friends = new Array();
+                            //a.events_id= eid;
+    
+    $("input:checkbox").each(function(){
+		var $this = $(this);
+
+		if($this.is(":checked")){
+			var shr1= {};
+			shr1.email = $this.attr("id");
+                        shr1.events_id = eid;
+			a.friends.push(shr1);
+		}
+	});
+		 
+    console.log(JSON.stringify(a));
+	$.ajax({    
+            type: "POST",
+            url: "http://moneysplit.in/moneysplitin/friends/",
+            headers: {"sessioncode": $.cookie("fblogin")},
+           data: a,
+            success: function (res) {
+				 var obj = jQuery.parseJSON( res );
+				 console.log(obj);
+				 location.reload();
+				 
+            }
+        });
+    });
 </script>
 
 </body>
